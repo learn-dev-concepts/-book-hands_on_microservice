@@ -1,10 +1,22 @@
+buildscript {
+    ext {
+        springBootVersion = '3.1.0'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.1.0'
     id 'io.spring.dependency-management' version '1.1.0'
 }
 
-group = 'se.magnus.microservices.composite.product'
+group = 'se.magnus.microservices.util'
 version = '1.0.0-SNAPSHOT'
 
 java {
@@ -20,8 +32,8 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
-tasks.named('bootBuildImage') {
-    builder = 'paketobuildpacks/builder-jammy-base:latest'
+dependencyManagement {
+    imports { mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") }
 }
 
 tasks.named('test') {
