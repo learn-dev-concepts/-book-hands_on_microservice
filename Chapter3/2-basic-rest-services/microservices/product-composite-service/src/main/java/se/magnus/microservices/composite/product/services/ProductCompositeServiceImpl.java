@@ -1,5 +1,7 @@
 package se.magnus.microservices.composite.product.services;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import se.magnus.api.composite.product.*;
@@ -13,6 +15,7 @@ import java.util.stream.Collectors;
 
 @RestController
 public class ProductCompositeServiceImpl implements ProductCompositeService {
+  private static final Logger LOG = LoggerFactory.getLogger(ProductCompositeServiceImpl.class);
   private final ServiceUtil serviceUtil;
   private final ProductCompositeIntegration integration;
 
@@ -25,9 +28,13 @@ public class ProductCompositeServiceImpl implements ProductCompositeService {
 
   @Override
   public ProductAggregate getProduct(int productId) {
+    LOG.info("produt: >> " + productId);
     Product product = integration.getProduct(productId);
+    LOG.info("1: >> " + product.toString());
     List<Recommendation> recommendations = integration.getRecommendations(productId);
+    LOG.info("2: >> " + recommendations.toString());
     List<Review> reviews = integration.getReviews(productId);
+    LOG.info("3: >> " + reviews.toString());
 
     return createProductAggregate(product, recommendations, reviews, serviceUtil.getServiceAddress());
   }

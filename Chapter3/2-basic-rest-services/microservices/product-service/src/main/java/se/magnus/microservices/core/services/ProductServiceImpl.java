@@ -10,8 +10,12 @@ import se.magnus.util.exceptions.InvalidInputException;
 import se.magnus.util.exceptions.NotFoundException;
 import se.magnus.util.http.ServiceUtil;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 @RestController
 public class ProductServiceImpl implements ProductService {
+
+  private static final Logger LOG = LoggerFactory.getLogger(ProductServiceImpl.class);
   private final ServiceUtil serviceUtil;
 
   @Autowired
@@ -21,6 +25,7 @@ public class ProductServiceImpl implements ProductService {
 
   @Override
   public Product getProduct(int productId) {
+    LOG.info("product id: >> " + productId);
     if (productId < 1) throw new InvalidInputException("Invalid productId: " + productId);
     if (productId == 13) throw new NotFoundException("No product found for productId: " + productId);
 

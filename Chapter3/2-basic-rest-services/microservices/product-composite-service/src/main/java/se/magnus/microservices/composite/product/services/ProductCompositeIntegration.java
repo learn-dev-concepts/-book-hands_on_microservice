@@ -36,6 +36,7 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
   private final String recommendationServiceUrl;
   private final String reviewServiceUrl;
 
+
   public ProductCompositeIntegration(
           RestTemplate restTemplate,
           ObjectMapper mapper,
@@ -59,6 +60,7 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
   public Product getProduct(int productId) {
     try {
       String url = productServiceUrl + productId;
+      LOG.info("test: >> " + url);
       Product product = restTemplate.getForObject(url, Product.class);
       return product;
 
@@ -88,6 +90,7 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
   @Override
   public List<Recommendation> getRecommendations(int productId) {
     String url = recommendationServiceUrl + productId;
+    LOG.info("review url: >> " + url);
     List<Recommendation> recommendations = restTemplate
             .exchange(url, GET, null, new ParameterizedTypeReference<List<Recommendation>>() {})
             .getBody();
