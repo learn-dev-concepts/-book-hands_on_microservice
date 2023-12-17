@@ -25,7 +25,6 @@ public class ProductServiceImpl implements ProductService {
 
   @Override
   public Product getProduct(int productId) {
-    LOG.info("product id: >> " + productId);
     if (productId < 1) throw new InvalidInputException("Invalid productId: " + productId);
     if (productId == 13) throw new NotFoundException("No product found for productId: " + productId);
 

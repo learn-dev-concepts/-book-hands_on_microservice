@@ -24,7 +24,6 @@ public class ReviewServiceImpl implements ReviewService {
 
   @Override
   public List<Review> getReviews(int productId) {
-    LOG.info("getReviews: >> " + productId);
     if (productId < 1) throw new InvalidInputException("Invalid productId: " + productId);
 
     if (productId == 213) {

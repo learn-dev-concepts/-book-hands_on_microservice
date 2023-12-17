@@ -28,13 +28,9 @@ public class ProductCompositeServiceImpl implements ProductCompositeService {
 
   @Override
   public ProductAggregate getProduct(int productId) {
-    LOG.info("produt: >> " + productId);
     Product product = integration.getProduct(productId);
-    LOG.info("1: >> " + product.toString());
     List<Recommendation> recommendations = integration.getRecommendations(productId);
-    LOG.info("2: >> " + recommendations.toString());
     List<Review> reviews = integration.getReviews(productId);
-    LOG.info("3: >> " + reviews.toString());
 
     return createProductAggregate(product, recommendations, reviews, serviceUtil.getServiceAddress());
   }
