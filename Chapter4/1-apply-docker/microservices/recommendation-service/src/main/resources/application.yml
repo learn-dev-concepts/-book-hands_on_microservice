@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: docker
+
+server:
+  port: 8080
+  error:
+    include-message: always
+
+logging:
+  level:
+    root: INFO
+    se.magnus.microservices: DEBUG
