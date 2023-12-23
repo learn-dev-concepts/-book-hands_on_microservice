@@ -13,11 +13,16 @@ java {
 
 repositories {
 	mavenCentral()
+
 }
 
 dependencies {
 	implementation project(':api')
 	implementation project(':util')
+	implementation 'io.springfox:springfox-swagger2:3.0.0'
+	implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+	implementation 'io.springfox:springfox-spring-webflux:3.0.0'
+
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
