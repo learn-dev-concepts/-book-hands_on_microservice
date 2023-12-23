@@ -1,4 +1,4 @@
-package se.magnus.microservices.core.recommendation.product.persistence;
+package se.magnus.microservices.core.product.persistence;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
