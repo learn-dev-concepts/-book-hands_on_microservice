@@ -1,5 +1,5 @@
 
-package se.magnus.microservices.core.services;
+package se.magnus.microservices.core.recommendation.product.services;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

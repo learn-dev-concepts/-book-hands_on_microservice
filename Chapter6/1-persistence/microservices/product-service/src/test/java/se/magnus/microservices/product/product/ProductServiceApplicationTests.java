@@ -1,4 +1,4 @@
-package se.magnus.microservices.core.product;
+package se.magnus.microservices.product.product;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
