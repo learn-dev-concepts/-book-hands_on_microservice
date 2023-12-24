@@ -1,12 +1,12 @@
 package se.magnus.microservices.composite.product;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import se.magnus.api.core.product.Product;
 import se.magnus.api.core.recommendation.Recommendation;
@@ -20,8 +20,10 @@ import static org.mockito.Mockito.when;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
 
+
+@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
-class ProductCompositeServiceApplicationTests {
+public class ProductCompositeServiceApplicationTests {
 
   private static final int PRODUCT_ID_OK = 1;
   private static final int PRODUCT_ID_NOT_FOUND = 2;
@@ -34,7 +36,7 @@ class ProductCompositeServiceApplicationTests {
   private ProductCompositeIntegration compositeIntegration;
 
 
-  @BeforeEach
+  @Before
   public void setUp() {
 
     when(compositeIntegration.getProduct(PRODUCT_ID_OK)).
@@ -50,7 +52,7 @@ class ProductCompositeServiceApplicationTests {
   }
 
   @Test
-  void contextLoads() {
+  public void contextLoads() {
   }
 
   @Test
