@@ -2,6 +2,12 @@ spring:
   profiles:
     active: docker
 
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: recommendation-db
+
 server:
   port: 8080
   error:
