@@ -8,3 +8,13 @@ curl http://localhost:8000/product-composite/123 -s | jq .
 
 lsof -i :8000
 kill -9 
+
+
+---
+
+## after docker
+
+docker-compose up -d
+
+curl http://localhost:8080/product-composite/123 -s | jq .
+bash ./scripts/test-em-all.bash
