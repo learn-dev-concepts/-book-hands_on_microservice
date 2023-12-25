@@ -37,6 +37,7 @@ services:
     # $ mongo
   mongodb:
     image: mongo:3.6.9
+    platform: linux/amd64
     mem_limit: 350m
     ports:
       - "27017:27017"
@@ -45,14 +46,13 @@ services:
     # $ mysql -uroot -h127.0.0.1 -p
   mysql:
     image: mysql:5.7
+    platform: linux/amd64
     mem_limit: 350m
     ports:
       - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=12345678
       - MYSQL_DATABASE=review-db
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=12345678
     healthcheck:
       test: [ "CMD", "mysqladmin" ,"ping", "-uuser", "-ppwd", "-h", "localhost" ]
       interval: 10s
