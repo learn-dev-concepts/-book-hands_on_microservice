@@ -8,7 +8,10 @@ import se.magnus.microservices.core.product.persistence.ProductEntity;
 
 @Mapper(componentModel = "spring")
 public interface ProductMapper {
-  @Mappings({ @Mapping(target = "serviceAddress", ignore = true) })
+
+  @Mappings({
+          @Mapping(target = "serviceAddress", ignore = true)
+  })
   Product entityToApi(ProductEntity entity);
 
   @Mappings({

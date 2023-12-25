@@ -1,6 +1,5 @@
 package se.magnus.microservices.core.review;
 
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +18,9 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static reactor.core.publisher.Mono.just;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = RANDOM_PORT)
+@SpringBootTest(webEnvironment=RANDOM_PORT, properties = {
+				"spring.datasource.url=jdbc:h2:mem:review-db"})
+
 public class ReviewServiceApplicationTests {
 
 	@Autowired
@@ -32,9 +33,6 @@ public class ReviewServiceApplicationTests {
 	@Before
 	public void setupDb() {
 		repository.deleteAll();
-	}
-	@Test
-	public void contextLoads() {
 	}
 
 	@Test
@@ -101,19 +99,20 @@ public class ReviewServiceApplicationTests {
 	}
 
 	@Test
-	public void getReviewsNotFound() {
-
-		getAndVerifyReviewsByProductId("?productId=213", OK)
-						.jsonPath("$.length()").isEqualTo(0);
-	}
-
-	@Test
 	public void getReviewsInvalidParameter() {
 
 		getAndVerifyReviewsByProductId("?productId=no-integer", BAD_REQUEST)
 						.jsonPath("$.path").isEqualTo("/review")
 						.jsonPath("$.message").isEqualTo("Type mismatch.");
 	}
+
+	@Test
+	public void getReviewsNotFound() {
+
+		getAndVerifyReviewsByProductId("?productId=213", OK)
+						.jsonPath("$.length()").isEqualTo(0);
+	}
+
 	@Test
 	public void getReviewsInvalidParameterNegativeValue() {
 
@@ -123,7 +122,6 @@ public class ReviewServiceApplicationTests {
 						.jsonPath("$.path").isEqualTo("/review")
 						.jsonPath("$.message").isEqualTo("Invalid productId: " + productIdInvalid);
 	}
-
 
 	private WebTestClient.BodyContentSpec getAndVerifyReviewsByProductId(int productId, HttpStatus expectedStatus) {
 		return getAndVerifyReviewsByProductId("?productId=" + productId, expectedStatus);
@@ -159,5 +157,4 @@ public class ReviewServiceApplicationTests {
 						.expectStatus().isEqualTo(expectedStatus)
 						.expectBody();
 	}
-
 }
