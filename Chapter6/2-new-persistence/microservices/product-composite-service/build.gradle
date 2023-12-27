@@ -23,12 +23,15 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'io.springfox:springfox-boot-starter:3.0.0'
 	testImplementation 'io.projectreactor:reactor-test'
+
+	testImplementation 'junit:junit:4.13.2' // JUnit 4 추가
+	testImplementation ('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.jupiter', module: 'junit-jupiter'
+		exclude group: 'org.junit.platform', module: 'junit-platform-commons'
+	}
 }
 
 tasks.named('bootBuildImage') {
 	builder = 'paketobuildpacks/builder-jammy-base:latest'
 }
 
-tasks.named('test') {
-	useJUnitPlatform()
-}
