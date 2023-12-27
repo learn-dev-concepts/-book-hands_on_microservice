@@ -3,7 +3,7 @@ package se.magnus.microservices.composite.product.services;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpStatusCode;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -65,7 +65,7 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
 
     } catch (HttpClientErrorException ex) {
 
-      HttpStatusCode statusCode = ex.getStatusCode();
+      HttpStatus statusCode = ex.getStatusCode();
       if (statusCode.equals(NOT_FOUND)) {
         throw new NotFoundException(getErrorMessage(ex));
       } else if (statusCode.equals(UNPROCESSABLE_ENTITY)) {
