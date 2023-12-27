@@ -3,8 +3,7 @@ package se.magnus.api.composite.product;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 public interface ProductCompositeService {
 
@@ -27,4 +26,12 @@ public interface ProductCompositeService {
         value    = "/product-composite/{productId}",
         produces = "application/json")
     ProductAggregate getProduct(@PathVariable int productId);
+
+    @PostMapping(
+            value    = "/product-composite",
+            consumes = "application/json")
+    void createCompositeProduct(@RequestBody ProductAggregate body);
+
+    @DeleteMapping(value = "/product-composite/{productId}")
+    void deleteCompositeProduct(@PathVariable int productId);
 }
