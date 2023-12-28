@@ -2,12 +2,12 @@ spring:
   profiles:
     active: docker
 
-    data:
-      mongodb:
-        host: localhost
-        port: 27017
-        database: recommendation-db
-        auto-index-creation: true
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: recommendation-db
+      auto-index-creation: true
 
 server:
   port: 8080

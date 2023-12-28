@@ -19,13 +19,12 @@ ext {
 	mapstructVersion = "1.3.1.Final"
 }
 
-
 dependencies {
 	implementation project(':api')
 	implementation project(':util')
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
-	testImplementation 'io.projectreactor:reactor-test'
+
 
 	testImplementation 'junit:junit:4.13.2' // JUnit 4 추가
 	testImplementation ('org.springframework.boot:spring-boot-starter-test') {
@@ -33,15 +32,18 @@ dependencies {
 		exclude group: 'org.junit.platform', module: 'junit-platform-commons'
 	}
 
+	testImplementation 'io.projectreactor:reactor-test'
+
 	implementation("org.mapstruct:mapstruct:${mapstructVersion}")
 	compileOnly "org.mapstruct:mapstruct-processor:${mapstructVersion}"
 	annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
 	testAnnotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
 
 	implementation('org.springframework.boot:spring-boot-starter-data-mongodb')
-	testImplementation('de.flapdoodle.embed:de.flapdoodle.embed.mongo')
+	testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo:4.12.0'
 }
 
 tasks.named('bootBuildImage') {
 	builder = 'paketobuildpacks/builder-jammy-base:latest'
 }
+
