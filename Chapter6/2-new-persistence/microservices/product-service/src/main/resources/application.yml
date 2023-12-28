@@ -2,12 +2,15 @@ spring:
   profiles:
     active: docker
 
+    mongodb:
+      embedded:
+        version: 3.5.5
+
     data:
       mongodb:
         host: localhost
         port: 27017
         database: product-db
-        auto-index-creation: true
 
 
 server:
