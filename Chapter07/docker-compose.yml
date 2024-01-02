@@ -54,7 +54,7 @@ services:
       - MYSQL_ROOT_PASSWORD=12345678
       - MYSQL_DATABASE=review-db
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-uuser", "-ppwd", "-h", "localhost"]
+      test: ["CMD", "mysqladmin", "ping", "-uroot", "-p12345678", "-h", "localhost"]
       interval: 10s
       timeout: 5s
       retries: 10
